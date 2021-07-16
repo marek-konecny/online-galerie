@@ -1,0 +1,525 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
+*{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  //outline: solid yellow 1px;
+}
+*::selection{
+  color: white;
+  background: #99c7ff;
+}
+html{
+  background: white;
+  padding-bottom: 50px;
+}
+
+.content{
+  margin-top: 50px;
+  overflow-x: hidden;
+}
+
+button{
+  user-select: none;
+}
+
+a{
+  color: rgb(80, 40, 110);
+  text-decoration: none;
+}
+a:hover{
+  color: rgb(150, 79, 214);
+}
+
+h1{
+  color: rgba(0, 0, 0, 0.8);
+
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  font-size:  5em;
+  text-align: center;
+}
+
+.navbar{
+  width: 100%;
+  z-index: 999;
+  position: sticky;
+  top: 0;
+  user-select: none; /*hlavně kvůli dotykovým obrazovkám zakazuji vybírání textu v navbaru (tlačítka se musí dát držet)*/
+}
+.navbar ul{
+  overflow: hidden;
+  display: flex; /*rotahuji navbar přes obrazovku*/
+  gap: 0px 50px;
+  padding-bottom: 0;
+  justify-content: center;
+  align-items: center;
+  background: rgba(39, 0, 69, 0.6);
+  -webkit-backdrop-filter: blur(8px); /*rozmazaný efekt za navbarem (design jsem ukradl z apple.com)*/
+  backdrop-filter: blur(8px); /*rozmazaný efekt za navbarem (design jsem ukradl z apple.com)*/
+  padding: 8px;/*výška 7vh odpovídá paddingu u kategorií*/
+}
+.navbar li{
+  position: relative;
+  list-style-type: none;
+  padding: 1vh;
+
+}
+.navbar li a{
+  display: block;
+
+  color: #f5f5f7;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20pt;
+  font-weight: 100;
+
+  text-align: center;
+  text-decoration: none;
+}
+.navbar li a:hover{
+  text-shadow: 0px 0px 8px rgb(200, 200, 200);
+}
+.navbar li a:active, .navbar li a.active{
+
+  text-shadow: 2px 1px 4px white, -2px -1px 4px white; /*svítící efekty pro zvolení a kliknutí*/
+}
+.navbar #loggedUser{
+  color: #f5f5f7;
+  position: absolute;
+  margin-top: -40px;
+  margin-left: 90%;
+  z-index: 1000;
+
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+
+}
+
+#registrationForm{
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  margin: auto;
+}
+#registrationForm *:not(.loginErrors):not(.loginErrors p){
+  font-size: 20pt;
+  height: 70px;
+  margin-top: 1%;
+}
+#registrationForm > input, #registrationForm > button, #registrationForm > #passwordFields > input{
+  padding: 1%;
+  border-radius: 0px;
+  outline: none;
+}
+#registrationForm > input, #registrationForm > #passwordFields > input{
+  border: none;
+  border-bottom: solid 3px rgb(230, 230, 230);
+  transition: .2s;
+}
+#registrationForm > input:hover, #registrationForm > #passwordFields > input:hover{
+  border-bottom: solid 3px rgb(190, 187, 191);
+  transition: .2s;
+}
+#registrationForm > input:focus, #registrationForm > #passwordFields > input:focus{
+  border-bottom: solid 3px rgb(80, 40, 110);
+  transition: 0s;
+}
+#passwordFields{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+#passwordFields > input{
+  width: 47%;
+}
+
+#registrationForm > button{
+  cursor: pointer;
+  padding: 1%;
+  margin-top: 5% !important;
+  margin-bottom: 1%;
+
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  background: white /*linear-gradient(0deg, rgba(192,192,192,1) 0%, rgba(255,255,255,1) 100%)*/;
+  box-shadow: 0px 5px 10px rgb(220, 220, 230);
+  transition: 0.2s;
+}
+#registrationForm > button:hover, #registrationForm > button:focus{
+  border-radius: 0px;
+  box-shadow: 0px 3px 0px rgb(80, 40, 110);
+  transition: 0s;
+}
+#registrationForm > button:active{
+  border-radius: 0px;
+  box-shadow: 0px 3px 0px rgb(170, 132, 196);
+}
+
+.uploadImgBtn{
+    margin-left: 20px;
+}
+.uploadImgBtn p{
+  font-weight: 300;
+  font-size: 15pt;
+  opacity: 50%;
+  cursor: default;
+}
+
+.uploadImgBtn button{
+  position: fixed;
+  text-transform: uppercase;
+  font-weight: 100;
+  font-size: 15pt;
+  cursor: pointer;
+  padding: 20px 8px 20px;
+
+  background: rgba(39, 0, 69, 0.6);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: white;
+
+  border-radius:6px;
+border: none;
+  transition: 0.2s;
+}
+.uploadImgBtn button:hover, .uploadImgBtn button:focus{
+  color: rgb(39, 0, 69);
+  background: rgba(255, 255, 255, 0.2);
+  transition: .08s;
+}
+
+
+.loginErrors{
+  margin-top: 1%;
+}
+.loginErrors p{
+  background: red;
+  opacity: 50%;
+  padding: 10px;
+  font-size: 15pt;
+  color: white;
+  text-align: left;
+}
+
+.loginErrors > #succesfulRegistration{
+  background: rgb(0, 114, 255);
+}
+.loginErrors > #succesfulRegistration > a{
+  font-size: 15pt;
+  color: white;
+  text-decoration: underline;
+}
+
+#imgUploadForm{
+  margin-top: 1% !important;
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  margin: auto;
+}
+#imgUploadForm input[type=file]{
+    opacity: 0%;
+}
+#imgUploadForm label[for=fileToUpload]{
+  color: white;
+  font-weight: 300;
+    font-size: 100pt;
+    border-radius: 15px;
+    background: #7d668f;
+    height: 400px;
+    text-align: center;
+    padding-top: 10%;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: .2s;
+}
+#imgUploadForm label[for=fileToUpload]:hover{
+  opacity: 60%;
+  transition: 0s;
+}
+
+#imageUploadUI{
+  margin-top: 1% !important;
+  display: flex;
+  flex-direction: row;
+  margin-right: 20px;
+}
+#imageUploadUI #privateCheckboxLabel{
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+#imageUploadUI > #registrationForm  input[type=checkbox] {
+  width: 5%;
+  height: 30px;
+}
+#imageUploadUI > #registrationForm  input[name=desc] {
+  height: 120px;
+}
+#imageUploadUI > img {
+
+  background: rgb(20, 20, 20);
+  object-fit:contain;
+  margin-left: 2%;
+  width: 50%;
+  max-height: 650px;
+}
+
+#imageAccessories{
+  margin-left: 5%;
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  padding-bottom: 10px;
+
+}
+#imageAccessories p{
+font-weight: 300;
+font-size: 60pt;
+
+}
+#imageAccessories p[name=title]{
+font-weight: 400;
+font-size: 45pt;
+
+}
+#imageAccessories p[name=owner]{
+  margin-top: 10px;
+  font-size: 20pt;
+  font-weight: 400;
+  color: rgba(50, 0, 70, 0.5);
+}
+#imageAccessories p[name=desc]{
+  margin-top: 60px;
+  font-weight: 300;
+  font-size: 45pt;
+}
+#imageAccessories p[name=title]:empty::after{
+  color: rgba(0, 0, 0, 0.3);
+  content: "Chybějící titulek";
+}
+#imageAccessories p[name=desc]:empty::after{
+  color: rgba(0, 0, 0, 0.3);
+  content: "Chybějící popisek";
+}
+#imageAccessories p[name=tags]{
+  color: rgba(0, 0, 0, 0.4);
+  margin-top: auto;
+  font-size: 20pt;
+  font-weight: 400;
+}
+#imageAccessories .imageActionButtons{
+  user-select: none;
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 5%;
+}
+#imageAccessories .imageActionButtons a{
+  font-size: 30pt;
+  cursor: pointer;
+  padding: 10px 40px 10px 40px;
+
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  background: white /*linear-gradient(0deg, rgba(192,192,192,1) 0%, rgba(255,255,255,1) 100%)*/;
+  box-shadow: 0px 5px 10px rgb(220, 220, 230);
+  transition: 0.2s;
+}
+#imageAccessories .imageActionButtons a:hover, #imageAccessories .imageActionButtons a:focus{
+  box-shadow: 0px 0px 0px rgb(80, 40, 110);
+  transition: 0s;
+}
+#imageAccessories .imageActionButtons a[name=delete]:hover, #imageAccessories .imageActionButtons a[name=delete]:focus{
+  color: white;
+  background: rgba(255, 0, 0, 0.5);
+  box-shadow: 0px 0px 0px rgb(255, 0, 0);
+}
+#imageAccessories .imageActionButtons a[name=edit]
+{
+}
+
+.imgComments{
+  margin-top: 5%;
+margin-left: 2%;
+margin-right: 2%;
+}
+
+.imgComments > #registrationForm{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  gap: 1%;
+
+  margin-left: 0;
+}
+.imgComments > #registrationForm button{
+  font-size: 15pt !important;
+  margin-top: 1% !important;
+}
+.imgComments > #registrationForm textarea[name=commenttext] {
+    font-size: 15pt;
+  height: 30px;
+  width: 50%;
+  padding: 1%;
+  border-radius: 0px;
+  outline: none;
+  border: none;
+  border-bottom: solid 3px rgb(230, 230, 230);
+  transition: .2s;
+}
+.imgComments > #registrationForm textarea[name=commenttext]:focus {
+  border-bottom: solid 3px rgb(80, 40, 110);
+}
+.imgComments > .comment {
+  margin-top: 2%;
+}
+.imgComments p{
+  padding: 1%;
+  font-size: 15pt;
+}
+.imgComments p[name=commentsAuthor], .imgComments p[name=commentsText]{
+  padding-bottom: 0;
+}
+.imgComments p[name=commentsAuthor]{
+  color: rgba(50, 0, 70, 0.5);
+}
+.imgComments p[name=commentsTime]{
+  font-size: 10pt;
+  color: rgba(0, 0, 0, 0.3);
+}
+.imgComments:nth-child(even) .comment{
+  background: rgba(0, 0, 0, 0.05);
+}
+
+
+.gallery{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1%;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+.gallery .mediaImage{
+  margin-bottom: 3%;
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+
+
+box-shadow: 0px 0px 10px rgb(200, 200, 200);
+
+
+  background: rgb(25,25,25);
+
+  width: 23%;
+  height: 400px;
+  margin-top: 1%;
+  border-radius: 10px 10px 0px 0px;
+  transition: .1s;
+}
+.gallery .mediaImage .imageContainer{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  overflow: hidden;
+
+  border-radius: 10px 10px 0px 0px;
+
+  width: 100%;
+  height: 75%;
+}
+.gallery .mediaImage .imageContainer img{
+  object-fit: contain;
+  max-width: 150%;
+
+  transition: .4s;
+
+}
+.gallery .mediaImage:hover .imageContainer img{
+  max-width: 100%;
+
+  transition: .2s;
+}
+
+.gallery .mediaImage .linkToImage{
+  border-radius: 10px 10px 0px 0px;
+display: block;
+position: absolute;
+/* margin-top: 300px; */
+width: 22%;
+height: 400px;
+background: white;
+color: transparent;
+opacity: 0%;
+z-index: 1;
+}
+
+.gallery .mediaImage:hover {
+  box-shadow: 0px 0px 1px rgb(180, 180, 180);
+}
+
+.galleryDescriptors{
+  background: white;
+  width: 100%;
+  height: 25%;
+}
+
+.galleryDescriptors p{
+    font-weight: 300;
+  margin-top: 3%;
+  padding-left: 3%;
+  font-size: 30pt;
+  color: rgba(0, 0, 0, 0.6);
+  //border-bottom: solid 1px rgb(230, 230, 230);
+}
+.galleryDescriptors p[name=title]{
+  font-weight: 300;
+}
+.galleryDescriptors p[name=desc]{
+  opacity: 50%;
+  font-weight: 300;
+}
+.galleryDescriptors p[name=title]:empty::after{
+  content: "Chybějící titulek";
+  color: rgba(0, 0, 0, 0.2);
+}
+.galleryDescriptors p[name=owner]{
+  font-size: 20pt;
+  font-weight: 400;
+  color: rgba(50, 0, 70, 0.5);
+}
+
+.pageScrollButtons{
+  display: flex;
+  justify-content: center;
+  gap: 1%;
+  padding: 10px 10px 30px 10px;
+}
+@media only screen and (max-width: 1010px){ /*responsivita pro tablety a mobily, měním například rozpoložení a tučnost textu pro viditelnost, odebírám animace, atd.*/
+  .navbar{
+    position:fixed; /*navbar fixuju dolů kvůli ovládání palcem*/
+    width: 100%;
+    bottom: 0;
+    top: auto;
+  }
+  .navbar ul{
+    justify-content: space-around;
+  }
+  .navbar li a{
+    padding-top: 1vw;
+    font-size: 20pt;
+  }
+}

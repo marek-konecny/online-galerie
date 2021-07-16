@@ -1,0 +1,1 @@
+a:6:{s:7:"usersNo";i:1;s:13:"usersFullName";s:1:"a";s:10:"usersEmail";s:1:"s";s:8:"usersUid";s:4:"root";s:8:"usersPwd";s:60:"$2y$10$zWV/MQAVvXDUM0D7ZY4BwuJc8kBcMoMFyBxGDVfu9dc/hflE.ZvB.";s:13:"usersCreation";s:19:"2021-07-13 17:21:41";}
