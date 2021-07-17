@@ -4,6 +4,7 @@ $currentUser = $_SESSION["loggedno"];
 
 require_once "databaseHandler_gallery.proc.php";
 require_once "functions.proc.php";
+require_once "reSmushAPI.proc.php";
 
 $tmpPath = "../" . $_POST["tmppath"];
 $filePath = "../uploads/" . basename($tmpPath);
@@ -23,6 +24,7 @@ else if (isset($_POST["upload"])){
 
 
   if (rename($tmpPath, $filePath)) {
+    reSmush($filePath);
     uploadPic($conn, $currentUser, $isPrivate, basename($filePath), $title, $desc, $tags);
   }
   else {
